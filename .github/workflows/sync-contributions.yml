@@ -1,0 +1,25 @@
+name: Sync GitHub contribution data
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 * * * *'
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Refresh cached contribution calendar
+        run: python3 scripts/sync_contributions.py
+      - name: Commit changed calendar only
+        run: |
+          if git diff --quiet -- data/contributions.json; then
+            echo "No contribution changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/contributions.json
+          git commit -m "Update contribution calendar"
+          git push
