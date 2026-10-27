@@ -6,9 +6,10 @@ Black-glass portfolio yang telah direvisi dengan **logo kucing**, tiga foto prib
 
 ![Hero desktop](docs/previews/hero-desktop.png)
 
+----------------------
+
 ![Gallery desktop](docs/previews/gallery-desktop.png)
 
-![Gallery mobile](docs/previews/gallery-mobile.png)
 
 ## Tampilan
 
