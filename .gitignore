@@ -1,0 +1,14 @@
+# Local development / temporary files
+node_modules/
+.next/
+dist/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+*.log
+photo_contact.png
+preview-*.png

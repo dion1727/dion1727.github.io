@@ -1,0 +1,13 @@
+/* React / shadcn reference cursor. Standalone public site uses site.js equivalent. */
+.il{position:relative;isolation:isolate}
+.il[data-live] :is([data-intent]){cursor:pointer}
+.il__layer{position:fixed;pointer-events:none;z-index:9999;inset:0;opacity:0;transition:opacity .15s}
+.il__layer[data-in]{opacity:1}
+.il__pill{position:absolute;left:0;top:0;width:10px;height:10px;border-radius:9999px;background:rgba(236,241,254,.96);color:#090a0e;border:1px solid rgba(255,255,255,.45);box-shadow:0 8px 30px rgba(0,0,0,.28);font:600 12px/1 ui-sans-serif,system-ui;overflow:hidden}
+.il__slot{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:7px;white-space:nowrap;opacity:0;transition:opacity .14s}
+.il__slot[data-on]{opacity:1}
+.il__slot svg{height:16px;width:16px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.il__measure{position:fixed!important;top:-9999px;left:-9999px;opacity:0;inset:auto;width:max-content;pointer-events:none}
+.il__bar{position:absolute;bottom:0;left:0;height:2px;width:calc(var(--il-p,0)*100%);background:#6571ac;transform-origin:left}
+@media(hover:none),(pointer:coarse){.il__layer{display:none}}
+@media(prefers-reduced-motion:reduce){.il__slot{transition:none}}

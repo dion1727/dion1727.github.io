@@ -1,30 +1,50 @@
-# Dion — Interactive Arcade & Portfolio
+# Dion / Developer Portfolio + Playable Arcade
 
-Repository tujuan: **dion1727/dion1727.github.io** (PUBLIC).
+Black-glass portfolio yang telah direvisi dengan **logo kucing**, tiga foto pribadi, dan interaksi cursor.
 
-Aplikasi website glassmorphism dengan menu About, Expertise, Arcade, GitHub Activity, Contact, serta **Commit Quest**, **Pixel Snake**, dan **Commit Breaker** (JavaScript Canvas). Isi `index.html`, CSS dan JS langsung berada di root. Tidak perlu build atau npm.
+## Preview
 
-## Pasang agar tidak 404
+![Hero desktop](docs/previews/hero-desktop.png)
 
-1. Buat repository baru dengan nama **dion1727.github.io** di akun **dion1727** (jangan mencampur dengan repo profil `dion1727/dion1727`).
-2. Extract ZIP dan unggah **ISI** ZIP ke **root repository baru**. Pastikan `index.html` langsung terlihat di halaman utama repo, bukan berada di folder tambahan.
-3. Commit, lalu Push origin jika memakai GitHub Desktop.
-4. Pada repo baru masuk **Settings → Pages**. Pilih **Deploy from a branch → main → /(root) → Save**. Pantau **Actions/Pages** sampai deployment sukses.
-5. Buka **https://dion1727.github.io/** setelah terbit (jangan pakai `/dion1727/`).
-6. Perbarui `README.md` pada repo profil lama memakai ZIP patch yang disertakan terpisah, supaya semua tombol menuju domain root ini.
+![Gallery desktop](docs/previews/gallery-desktop.png)
 
-## URL dan fitur
+![Gallery mobile](docs/previews/gallery-mobile.png)
 
-- Portfolio: https://dion1727.github.io/
-- Commit Quest: https://dion1727.github.io/?game=quest#arcade
-- Pixel Snake: https://dion1727.github.io/?game=snake#arcade
-- Commit Breaker: https://dion1727.github.io/?game=breaker#arcade
-- GitHub Activity: https://dion1727.github.io/#contributions
+## Tampilan
 
-Commit Quest: tabel tanggal berdasarkan kontribusi GitHub publik saat tersedia. Data realtime mengambil kalender mirror publik dan GitHub Events (jika kalender tak tersedia, label fallback menjelaskan mode parsial atau latihan). Workflow `.github/workflows/sync-contributions.yml` bisa dijalankan manual di tab Actions untuk membuat cache kontribusi `data/contributions.json`; dijadwalkan per jam jika diizinkan GitHub. Data tidak dibuat-buat. Catatan: commit otomatis dari `GITHUB_TOKEN` tidak selalu memicu build Pages baru; website tetap mencoba mengambil data kontribusi publik secara langsung saat dibuka.
+- Logo kucing di navbar dari gambar yang diberikan.
+- Galeri tiga foto pribadi, dengan spotlight mengikuti mouse dan preview modal klik.
+- Scroll animation di seluruh section (hero, foto, skill, game, GitHub activity, media sosial), parallax ringan, progress bar scroll, serta cursor glow dengan trail halus dan label interaktif yang mengikuti mouse.
+- Tetap mempertahankan **Commit Quest, Pixel Snake, Commit Breaker, GitHub Activity, keahlian, dan media sosial**.
+- Responsive desktop dan mobile; mengikuti preferensi reduced motion.
 
-## Menjalankan lokal
+## Update Motion V2
 
-Double click `JALANKAN_WEBSITE_LOKAL.bat`, atau jalankan `py -m http.server 8000` dari folder ini dan buka http://127.0.0.1:8000/. Menggunakan file statis; web server harus berjalan untuk request JSON lokal.
+- **Scroll reveal** pada judul, kartu, studio game, kontribusi, kontak; gerakan naik/menyamping + blur lembut dengan `IntersectionObserver`.
+- **Cursor glow** selalu mengikuti pointer mouse dengan ring transparan dan trail halus; di tombol yang memakai `data-intent` berubah menjadi label aksi.
+- **Spotlight** pada tiga foto, kartu keahlian, sosial, dan panel game/GitHub.
+- **Parallax ringan** di hero yang bergerak berdasarkan posisi scroll.
+- Animasi tidak mengubah `game.js` atau `radar.js`, agar game dan fetch kontribusi tetap berfungsi.
+- Efek otomatis tidak aktif di layar sentuh atau bila pengaturan *Reduced Motion* dinyalakan.
 
-**Catatan:** README GitHub tidak menjalankan JavaScript, jadi semua game interaktif berada di situs Pages ini. Akses link eksternal butuh internet dan bisa dibatasi rate limit/CORS. URL sosial berasal dari README lama, sebaiknya verifikasi alamat LinkedIn dan Discord.
+## Menjalankan
+
+Bisa langsung dibuka lewat `index.html`, tetapi lebih baik dengan server lokal:
+
+```bash
+python -m http.server 8000
+```
+
+Buka `http://localhost:8000/`. Untuk Windows, juga bisa jalankan `JALANKAN_WEBSITE_LOKAL.bat`.
+
+## Publikasi GitHub Pages
+
+Upload **isi folder ini** ke root repository `dion1727/dion1727.github.io`, bukan folder pembungkusnya. Pastikan `index.html` berada di root, lalu aktifkan GitHub Pages: `main` / `(root)` atau gunakan workflow Pages sesuai konfigurasi repo.
+
+GitHub API dapat membatasi permintaan; status gagal mengambil data harus tetap dianggap tidak tersedia, bukan dibuat-buat.
+
+## Komponen React
+
+Proyek saat ini adalah HTML/JS, bukan React. Source Spotlight TSX dan Intent Label tersedia di `components/ui/`; baca [REACT_SHADCN_SETUP.md](REACT_SHADCN_SETUP.md) untuk memasangnya di proyek React + Tailwind + TypeScript melalui CLI shadcn. Website HTML sekarang memakai efek spotlight ekuivalen **yang sudah berjalan** tanpa membutuhkan NPM.
+
+> **Privasi:** tiga foto yang diberikan berada di `assets/moment-*.webp`. Jika repository disetel Public, gambar tersebut akan bisa dilihat oleh siapa pun. Periksa sebelum upload.

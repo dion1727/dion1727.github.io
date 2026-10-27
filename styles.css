@@ -25,3 +25,83 @@
 .floating-card,.floating-pill{will-change:transform}.glass, .game-option, .social, .btn {transition-property:transform,box-shadow,border-color,background;transition-duration:.24s}
 .social:hover,.skill-card:hover{box-shadow:0 14px 45px #000a,inset 0 1px 0 #ffffff24}
 @media(prefers-reduced-motion:reduce){.floating-card,.floating-pill{will-change:auto}}
+
+
+/* --- Cat icon / personal moments / spotlight & scroll animation --- */
+#scroll-progress{position:fixed;z-index:1200;top:0;left:0;transform-origin:left;height:2px;width:100%;transform:scaleX(0);background:linear-gradient(90deg,#c9daff,#eddef9,#99e6ec);box-shadow:0 0 15px #d4daff8a;pointer-events:none}
+.brand-mark.cat-brand{overflow:hidden;background:linear-gradient(145deg,#222733,#0a0b12);border:1px solid rgba(229,231,251,.24);padding:2px;box-shadow:0 0 25px rgba(161,143,215,.21),inset 0 0 18px rgba(159,164,213,.13)}
+.cat-brand img{display:block;object-fit:contain;width:100%;height:100%;filter:drop-shadow(0 0 7px rgba(182,183,235,.4))}
+.brand:hover .cat-brand img{animation:cat-breathe 1.6s ease-in-out}
+@keyframes cat-breathe{50%{transform:translateY(-3px) scale(1.09);filter:drop-shadow(0 0 14px rgba(169,198,255,.8))}}
+.cat-orbit{position:absolute;right:4%;bottom:4%;width:88px;height:88px;pointer-events:none;opacity:.34;filter:drop-shadow(0 0 23px rgba(196,158,251,.45));animation:cat-float 6s ease-in-out infinite;z-index:1}
+.cat-orbit img{width:100%;height:100%;object-fit:contain}
+@keyframes cat-float{50%{transform:translateY(-12px) rotate(4deg)}}
+.moments-section{padding:68px 0 82px;scroll-margin-top:112px;position:relative;isolation:isolate}
+.moments-section::before{content:"";position:absolute;inset:0 -2%;z-index:-1;background:radial-gradient(ellipse at 12% 51%,rgba(134,134,168,.12),transparent 41%);pointer-events:none}
+.moments-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;align-items:stretch}
+.moment-card{position:relative;min-width:0;aspect-ratio:4/5;background:#11131b;border:1px solid rgba(248,248,255,.14);border-radius:24px;overflow:hidden;padding:0;color:#fff;cursor:pointer;isolation:isolate;transform-style:preserve-3d;box-shadow:0 17px 45px rgba(0,0,0,.30);transition:transform .42s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .35s}
+.moment-card::before{content:"";position:absolute;z-index:3;inset:0;pointer-events:none;background:radial-gradient(320px circle at var(--spotlight-x,50%) var(--spotlight-y,50%),rgba(216,221,255,.23),transparent 70%);opacity:0;mix-blend-mode:screen;transition:opacity .3s}
+.moment-card::after{content:"";z-index:3;position:absolute;inset:0;pointer-events:none;border-radius:inherit;border:1px solid transparent;background:radial-gradient(290px circle at var(--spotlight-x,50%) var(--spotlight-y,50%),rgba(248,240,255,.9),transparent 58%) border-box;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask-composite:exclude;opacity:0;transition:opacity .3s}
+.moment-card:hover::before,.moment-card:hover::after,.moment-card:focus-visible::before,.moment-card:focus-visible::after{opacity:1}
+.moment-card:hover{border-color:#ffffff55;box-shadow:0 34px 70px rgba(0,0,0,.57),0 0 38px rgba(169,178,232,.1)}
+.moment-card>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .85s cubic-bezier(.2,.8,.2,1),filter .6s;filter:saturate(.8)}
+.moment-card:hover>img{transform:scale(1.065);filter:saturate(1.03)}
+.moment-card:nth-child(2)>img{object-position:50% 45%}
+.moment-card:nth-child(3)>img{object-position:50% 30%}
+.moment-card .moment-glass{position:absolute;bottom:14px;left:14px;right:14px;z-index:5;text-align:left;padding:18px;border:1px solid rgba(255,255,255,.19);border-radius:17px;background:rgba(13,15,20,.61);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:grid;gap:5px;box-shadow:0 16px 35px #03050877}
+.moment-index{font:600 10px/1.3 ui-monospace,monospace;letter-spacing:.16em;color:#b9bdd4}.moment-glass b{font-size:19px;letter-spacing:-.035em}.moment-open{position:absolute;right:18px;bottom:19px;font-size:20px;color:#e1e6f5;transition:transform .2s}
+.moment-card:hover .moment-open{transform:translate(3px,-3px)}
+.gallery-note{display:flex;align-items:center;gap:9px;margin:18px 0 0;color:#a5abbc;font-size:12px}
+.gallery-note span{font-size:17px;color:#b9d4ff}
+.spotlight-surface:not(.moment-card){position:relative;isolation:isolate;overflow:hidden}
+.spotlight-surface:not(.moment-card)::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;border-radius:inherit;background:radial-gradient(270px circle at var(--spotlight-x,50%) var(--spotlight-y,50%),rgba(235,232,255,.11),transparent 69%);opacity:0;transition:opacity .3s}
+.spotlight-surface:not(.moment-card):hover::before,.spotlight-surface:not(.moment-card):focus-visible::before{opacity:1}
+.photo-dialog{max-width:min(90vw,960px);max-height:92vh;width:max-content;background:#0d0e16d9;border:1px solid rgba(255,255,255,.2);border-radius:25px;padding:18px;box-shadow:0 28px 100px #000b;color:white;backdrop-filter:blur(20px);overflow:visible}
+.photo-dialog::backdrop{background:#030408d9;backdrop-filter:blur(12px)}
+.photo-dialog-shell{display:grid;gap:12px;justify-items:center}
+.photo-dialog-shell img{display:block;max-height:76vh;max-width:calc(90vw - 40px);width:auto;height:auto;border-radius:15px;object-fit:contain}
+.photo-dialog-footer{width:100%;display:flex;justify-content:space-between;gap:12px;color:#bec2d3;font-size:12px}
+.photo-close{position:absolute;top:-50px;right:0;background:#242630;border:1px solid #ffffff38;color:#fff;border-radius:12px;padding:9px 13px;cursor:pointer;font:600 13px/1.3 inherit}
+/* Motion appears only after JS observer is ready; fallback stays visible. */
+.motion-ready .reveal{opacity:0;translate:0 28px;filter:blur(4px);transition:opacity .75s ease,translate .75s cubic-bezier(.15,.74,.26,1),filter .75s ease}
+.motion-ready .reveal.is-visible{opacity:1;translate:0 0;filter:blur(0)}
+.moments-grid .reveal:nth-child(2){transition-delay:.1s}.moments-grid .reveal:nth-child(3){transition-delay:.2s}
+.intent-cursor{position:fixed;pointer-events:none;z-index:1500;left:0;top:0;display:flex;gap:7px;align-items:center;justify-content:center;white-space:nowrap;border:1px solid rgba(238,240,255,.43);border-radius:999px;background:rgba(220,225,243,.96);backdrop-filter:blur(18px);color:#090b13;box-shadow:0 8px 28px #0006;min-width:9px;min-height:9px;padding:0;transform:translate(-50%,-50%);opacity:0;scale:.6;transition:opacity .12s,scale .25s,width .25s,background .25s;font:750 12px/1.3 Inter,Arial,sans-serif}
+.intent-cursor.active{opacity:1;scale:1;padding:10px 16px}
+.intent-cursor span{display:none}.intent-cursor.active span{display:inline}
+@media (max-width:960px){.moments-grid{gap:12px}.moments-section{padding:48px 0 66px}.moment-glass b{font-size:15px}}
+@media (max-width:670px){.moments-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.moment-card:last-child{grid-column:1/-1;aspect-ratio:16/10}.moment-card{border-radius:18px}.moment-card .moment-glass{padding:13px;left:9px;right:9px;bottom:9px}.moment-index{font-size:9px}.moment-glass b{font-size:14px}.moment-open{right:13px;bottom:13px}.cat-orbit{width:61px;height:61px;opacity:.22}}
+@media (hover:none),(pointer:coarse){.intent-cursor{display:none}.moment-card::before,.moment-card::after{display:none}}
+@media (prefers-reduced-motion:reduce){.motion-ready .reveal{opacity:1;translate:none;filter:none}.moment-card,.moment-card>img{transition:none}.cat-orbit{animation:none}}
+
+/* ===== Motion V2: layered cursor, true page-wide scroll animation ===== */
+/* Draw a subtle follow ring instead of covering buttons with a solid pill. */
+.intent-cursor{width:34px;height:34px;min-width:34px;min-height:34px;padding:0!important;opacity:0!important;scale:1!important;display:block;left:0;top:0;border:0!important;background:transparent!important;backdrop-filter:none!important;box-shadow:none!important;transition:opacity .18s ease,width .24s cubic-bezier(.22,.8,.25,1),height .24s ease;will-change:transform;z-index:1500}
+.intent-cursor.is-visible{opacity:1!important}
+.cursor-aura{display:block!important;position:absolute;inset:-2px;border:1px solid rgba(205,223,255,.68);border-radius:50%;background:radial-gradient(circle,rgba(218,227,255,.1),rgba(171,196,244,.025) 65%,transparent 72%);box-shadow:0 0 18px rgba(176,192,240,.25),inset 0 0 13px rgba(175,191,255,.06);transition:border-radius .25s,inset .25s,background .25s,opacity .2s}
+.cursor-core{display:block!important;position:absolute;left:50%;top:50%;height:5px;width:5px;border-radius:100%;background:#f3f7ff;box-shadow:0 0 11px #dce5ff,0 0 30px rgba(190,217,255,.54);transform:translate(-50%,-50%);transition:opacity .18s}
+.cursor-label{display:flex!important;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);align-items:center;justify-content:center;gap:7px;white-space:nowrap;opacity:0;pointer-events:none;padding:0;font:700 11px/1.2 Inter,Arial,sans-serif;color:#0b101c;transition:opacity .18s}
+.cursor-label #intent-cursor-icon,.cursor-label #intent-cursor-text{display:inline!important}
+.intent-cursor.is-intent{width:max-content;min-width:100px;height:39px;border-radius:99px;background:rgba(229,237,252,.9)!important;box-shadow:0 9px 30px #0009,0 0 25px rgba(156,194,255,.2)!important;backdrop-filter:blur(12px)!important}
+.intent-cursor.is-intent .cursor-aura,.intent-cursor.is-intent .cursor-core{opacity:0}
+.intent-cursor.is-intent .cursor-label{opacity:1;position:relative;left:auto;top:auto;transform:none;padding:0 15px;height:100%;width:100%}
+.motion-trail{position:fixed;left:0;top:0;width:6px;height:6px;border-radius:50%;z-index:1499;pointer-events:none;background:rgba(181,198,246,.7);box-shadow:0 0 17px rgba(170,187,237,.55);opacity:0;will-change:transform;transition:opacity .18s}
+.motion-trail.is-visible{opacity:var(--trail-opacity,.13)}
+/* Reduced-motion fallback is always visible and never moves. */
+.motion-ready .reveal{opacity:0;translate:0 42px;filter:blur(7px);transition:opacity .85s cubic-bezier(.22,.81,.3,1),translate .95s cubic-bezier(.2,.7,.19,1),filter .85s ease;transition-delay:var(--reveal-delay,0ms)}
+.motion-ready .reveal[data-reveal=left]{translate:-27px 20px}
+.motion-ready .reveal[data-reveal=right]{translate:27px 20px}
+.motion-ready .reveal.is-visible{opacity:1;translate:0 0;filter:blur(0)}
+/* A small bit of depth during scroll, without changing the game canvas layout. */
+.hero-visual{transform:translate3d(0,calc(var(--depth-shift,0px)*.35),0)}
+.hero-visual .cat-orbit{translate:0 calc(var(--depth-shift,0px)*-.6)}
+/* Make spotlight glass surface work on game cards and contribution panels too. */
+.motion-lit{position:relative;isolation:isolate;--spotlight-x:50%;--spotlight-y:50%}
+.motion-lit::after{content:"";position:absolute;inset:0;border:1px solid transparent;border-radius:inherit;pointer-events:none;background:radial-gradient(300px circle at var(--spotlight-x,50%) var(--spotlight-y,50%),rgba(224,235,255,.55),transparent 58%) border-box;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask-composite:exclude;opacity:0;transition:opacity .25s ease}
+.motion-lit:hover::after,.motion-lit:focus-within::after{opacity:1}
+/* Make heading motion and hover visible but not exaggerated or disruptive. */
+.topbar nav a{position:relative}
+.topbar nav a::after{content:"";position:absolute;bottom:4px;left:14px;right:14px;height:1px;background:linear-gradient(90deg,transparent,#edf3ff,transparent);transform:scaleX(0);transition:transform .32s ease}
+.topbar nav a:hover::after,.topbar nav a:focus-visible::after{transform:scaleX(1)}
+@media (hover:none),(pointer:coarse){.intent-cursor,.motion-trail{display:none!important}}
+@media (prefers-reduced-motion:reduce){.intent-cursor,.motion-trail{display:none!important}.motion-ready .reveal,.motion-ready .reveal[data-reveal]{opacity:1;translate:none;filter:none;transition:none}.hero-visual{transform:none}.hero-visual .cat-orbit{translate:none}.motion-lit::after{display:none}}
