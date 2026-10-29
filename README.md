@@ -1,6 +1,5 @@
 # Dion / Developer Portfolio + Playable Arcade
 
-Black-glass portfolio yang telah direvisi dengan **logo kucing**, tiga foto pribadi, dan interaksi cursor.
 
 ## Preview
 
@@ -40,7 +39,7 @@ Buka `http://localhost:8000/`. Untuk Windows, juga bisa jalankan `JALANKAN_WEBSI
 
 ## Publikasi GitHub Pages
 
-Upload **isi folder ini** ke root repository `dion1727/dion1727.github.io`, bukan folder pembungkusnya. Pastikan `index.html` berada di root, lalu aktifkan GitHub Pages: `main` / `(root)` atau gunakan workflow Pages sesuai konfigurasi repo.
+Upload **isi folder ini** ke root repository `KALIAN`, bukan folder pembungkusnya. Pastikan `index.html` berada di root, lalu aktifkan GitHub Pages: `main` / `(root)` atau gunakan workflow Pages sesuai konfigurasi repo.
 
 GitHub API dapat membatasi permintaan; status gagal mengambil data harus tetap dianggap tidak tersedia, bukan dibuat-buat.
 
