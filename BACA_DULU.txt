@@ -1,33 +1,12 @@
-DION PORTFOLIO — MOTION V4 (BERDASARKAN V2)
+DION PORTFOLIO V5 — FULL MOTION, NO FEATURES REMOVED
 
-CARA MENJALANKAN (Windows):
-1. Extract ZIP ke folder baru, jangan langsung menimpa situs yang sudah online.
-2. Double-click JALANKAN_WEBSITE_LOKAL.bat.
-3. Buka http://127.0.0.1:8000/ jika browser tidak terbuka otomatis.
-   Alternatif terminal VS Code: py -m http.server 8000
+1. Extract this ZIP to a new folder.
+2. Run JALANKAN_WEBSITE_LOKAL.bat or use: py -m http.server 8000
+3. Open http://localhost:8000
+4. Test scroll down, scroll back up, mouse cursor/background glow, bell motion switch, gallery and three games.
+5. Only after verifying locally, copy the CONTENTS (not the folder wrapper) to the root of dion1727.github.io and commit/push.
 
-YANG DIPERBAIKI:
-- Scroll reveal aktif ulang saat section kembali terlihat dari scroll atas/bawah.
-- Efek partikel cursor hanya di lapisan AMBIENT belakang konten; tidak ada lagi label popup besar yang menutup navbar.
-- Tombol Motion on/off berfungsi dan memberi animasi lonceng.
-- Quick links membuka daftar tautan dengan animasi folder singkat.
-- Hover tombol magnetic, spotlight foto, cinematic footer yang minimal.
-- Teks dekoratif yang tidak perlu dipangkas; catatan teknis diletakkan di About this site.
-- Area mobile tidak melebar saat elemen muncul.
+The game.js and radar.js files have been preserved exactly from your latest uploaded ZIP.
+The three photos and cat logo come from your previously supplied V2; publishing makes them public.
 
-YANG TETAP ADA:
-- Logo kucing dan 3 foto asli, lengkap dengan galeri klik-buka.
-- About, Moments, Expertise, Arcade, Activity, Contact.
-- Commit Quest, Pixel Snake, Commit Breaker; semua tombol game dan kontrol arah.
-- GitHub Activity, kalender kontribusi, dan semua link sosial.
-- game.js dan radar.js tetap identik byte-for-byte dengan ZIP V2 yang kamu unggah.
-
-CATATAN:
-- Tidak perlu React/npm untuk versi website utama. Source komponen React terpisah
-  di components/ui hanya untuk migrasi; lihat REACT_SHADCN_SETUP.md.
-- Efek partikel hanya aktif untuk mouse/trackpad dan dimatikan jika Reduced Motion aktif.
-- Foto pribadi di assets/moment-*.webp akan publik saat repo GitHub Pages dibuat Public.
-
-UPLOAD GITHUB:
-- Setelah diuji lokal, salin ISI folder ini ke root repository dion1727.github.io.
-- Lakukan Commit dan Push di GitHub Desktop, lalu Ctrl+Shift+R di browser.
+V7: Quick Links contrast diperbaiki; hero cursor repulsion per huruf, scroll reveal dua arah, cloud parallax, cursor ambient belakang konten. Fitur V6 tetap ada.

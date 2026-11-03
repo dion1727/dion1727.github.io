@@ -1,0 +1,12 @@
+Skybound V8 Glass Arcade Rework
+
+Dari V7, tanpa membuang fitur:
+- Kartu kode About diganti foto personal
+- Bagian Skills, Arcade, Photos, Activity, Contact menjadi sky-frost glass
+- Ketiga permainan dirapikan dan diberikan animasi canvas baru
+- Kontrol paddle Breaker bisa ditahan
+- Scroll, cursor, clouds, galeri, project, sosial media tetap ada
+
+Cara jalan: jalankan JALANKAN_WEBSITE_LOKAL.bat (Windows), atau py -m http.server 8000 lalu buka http://localhost:8000
+
+Privasi: tiga foto pribadi dalam assets/ dapat dilihat publik kalau di-upload ke GitHub Pages.

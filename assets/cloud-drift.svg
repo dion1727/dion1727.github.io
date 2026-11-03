@@ -1,0 +1,3 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="270" viewBox="0 0 600 270">
+<defs><filter id="b"><feGaussianBlur stdDeviation="13"/></filter><radialGradient id="g" cx="47%" cy="35%" r="73%"><stop stop-color="#ffffff" stop-opacity=".99"/><stop offset=".73" stop-color="#e9f6ff" stop-opacity=".92"/><stop offset="1" stop-color="#d7eaff" stop-opacity="0"/></radialGradient></defs>
+<g filter="url(#b)" fill="url(#g)"><ellipse cx="135" cy="160" rx="110" ry="55"/><ellipse cx="226" cy="120" rx="115" ry="83"/><ellipse cx="330" cy="90" rx="114" ry="86"/><ellipse cx="432" cy="134" rx="124" ry="64"/><ellipse cx="505" cy="159" rx="75" ry="47"/><ellipse cx="309" cy="165" rx="230" ry="64"/></g></svg>
