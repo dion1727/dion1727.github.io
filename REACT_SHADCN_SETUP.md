@@ -1,49 +1,46 @@
-# Integrasi React + shadcn (opsional)
+# Komponen React Bits (opsional untuk migrasi)
 
-## Kode utama dan alasan
-Repository ini berasal dari **HTML + CSS + JavaScript murni**, jadi tidak menggunakan React/TypeScript.
-Website yang langsung bisa digunakan di GitHub Pages adalah `index.html`, `styles.css`, `site.js`, `game.js`, dan `radar.js`.
-Efek spotlight, galeri, scroll reveal dan intent-cursor telah **diintegrasikan pada website statis** supaya tiga game yang ada tetap berjalan.
+Website portofolio yang bisa langsung dijalankan tetap menggunakan **HTML, CSS, dan JavaScript**. Ini sengaja dipertahankan agar game, galeri foto, GitHub Pages, dan GitHub Activity yang sudah berjalan tidak berubah. Tidak perlu menjalankan `npm install` untuk website asli.
 
-## Versi komponen React yang disertakan
-- `/components/ui/spotlight.tsx` — Spotlight sesuai komponen React yang diminta.
-- `/components/ui/intent-label.tsx` + `intent-label.css` — sumber yang diberikan, plus CSS dasar.
-- `/components/ui/spotlight-demo.tsx` dan `personal-photo-card.tsx` — contoh penggunaan.
-- `/lib/utils.ts` — fungsi `cn` standar shadcn.
+## Efek yang SUDAH aktif di website sekarang
 
-Direktori `/components/ui` penting agar import `@/components/ui/spotlight` tetap konsisten dengan standar shadcn. Jangan mengimpor file-file TSX ke website HTML yang sekarang: perlu React bundler terlebih dahulu.
+| Referensi efek | Adaptasi website HTML saat ini |
+|---|---|
+| SwarmCursor | Partikel mengikuti mouse pada `#ambient-swarm` **di belakang seluruh konten**, tanpa menutupi teks dan tombol |
+| Spotlight | Sorotan lokal di foto, kartu skill, dan panel game; border glow halus |
+| ScrollTrigger / cinematic footer | Scroll reveal yang reset saat masuk-keluar viewport dari atas maupun bawah, plus footer glass |
+| FolderFloat | Tombol **Quick links** yang membuka tautan asli dengan animasi bertahap |
+| BellToggle | Tombol **Motion on / Motion off** dengan animasi lonceng dan pengaturan yang benar-benar bekerja |
+| MagneticButton | Gerakan hover tombol navigasi/hero kecil, tanpa memengaruhi tombol gameplay |
 
-## Migrasi bila ingin React/shadcn sungguhan
+Semua efek utama untuk website statis ada di `site.js` dan `styles.css`. Efek cursor tidak memakai WebGL yang berat dan menonaktifkan diri pada perangkat sentuh atau saat Reduced Motion aktif.
 
-Untuk proyek Next.js + Tailwind + TypeScript baru:
+## Source React untuk penggunaan di masa depan
 
-```bash
-npx create-next-app@latest dion-portfolio-react --ts --tailwind --eslint --app --src-dir=false --import-alias "@/*"
+Di `components/ui/` tersedia:
+
+- `spotlight.tsx`, `spotlight-demo.tsx`
+- `FolderFloat.jsx` + `FolderFloat.css` (membutuhkan `matter-js`)
+- `SwarmCursor.jsx` + `SwarmCursor.css`
+- `BellToggle.jsx` + `BellToggle.css` (membutuhkan `motion`, `@hugeicons/react`, dan `@hugeicons/core-free-icons`)
+- `personal-photo-card.tsx`, `intent-label.tsx`, `intent-label.css`
+
+**File React tersebut belum diimpor ke `index.html`.** Source ini adalah referensi untuk migrasi, bukan kode yang bisa langsung dijalankan browser tanpa React. Adaptasi HTML statis di atas yang aktif sekarang.
+
+## Jika nanti ingin memakai React + Tailwind + TypeScript + shadcn
+
+Dari terminal Windows, siapkan proyek baru menggunakan CLI:
+
+```powershell
+npx create-next-app@latest dion-portfolio-react --ts --tailwind --eslint --app --import-alias "@/*"
 cd dion-portfolio-react
 npx shadcn@latest init
-npm install @radix-ui/react-slot lucide-react clsx tailwind-merge
+npm install @radix-ui/react-slot clsx tailwind-merge lucide-react matter-js motion @hugeicons/react @hugeicons/core-free-icons gsap
+npm run dev
 ```
 
-Salin `components/ui/`, `lib/utils.ts`, dan `assets` ke proyek React baru. Letakkan gambar di `public/assets/`.
-Setelah itu komponen ini bisa dipanggil dari file client `app/page.tsx`:
+Salin `components/ui/` dan `lib/utils.ts` ke root proyek React yang menggunakan alias `@/*` (untuk proyek dengan direktori `src`, tempatkan di `src/components/ui/` dan `src/lib/utils.ts`). Path `components/ui` penting untuk kesesuaian import `@/components/ui/spotlight` dan pola konvensi shadcn. Salin `assets/` ke `public/assets/`.
 
-```tsx
-import PersonalPhotoCard from "@/components/ui/personal-photo-card";
+Komponen JavaScript JSX bisa dipakai dalam proyek TypeScript yang `allowJs` aktif, atau dikonversi ke TSX. Setiap komponen menggunakan client-side interaksi dan memerlukan `'use client'` pada Next.js. Untuk game dan radar, perlu adaptasi lifecycle ketika memindahkan `game.js` dan `radar.js` ke React; jangan salin kedua script ke server component.
 
-export default function Page() {
- return <main className="grid gap-5 p-8 md:grid-cols-3">
-  <PersonalPhotoCard src="/assets/moment-1.webp" alt="Portrait" caption="In the moment" />
-  <PersonalPhotoCard src="/assets/moment-2.webp" alt="Outdoor portrait" caption="A little pause" />
-  <PersonalPhotoCard src="/assets/moment-3.webp" alt="Working session" caption="Work in progress" />
- </main>
-}
-```
-
-Next.js source baru memerlukan adaptasi `game.js` dan `radar.js` menjadi hooks/client-only agar tidak bentrok dengan lifecycle React. Karena itu paket deploy saat ini tetap memakai versi HTML yang sudah berfungsi.
-
-### Dependencies
-React / React DOM / TypeScript / Tailwind / Next.js disiapkan oleh `create-next-app`; `@radix-ui/react-slot` dipakai Spotlight; `clsx` dan `tailwind-merge` dipakai `cn`; `lucide-react` tersedia untuk ikon React tambahan.
-
-## Efek Motion V2 yang dipakai pada website asli
-
-Komponen React `Spotlight` dan `IntentLabel` tersedia sebagai contoh migrasi, tetapi deployment GitHub Pages memakai CSS/JS vanilla yang setara dari `site.js` dan `styles.css`. **Tidak perlu npm install** untuk menjalankan website asli. Efek ini kompatibel dengan foto lokal di `assets/` dan tidak memakai gambar stok Unsplash.
+**Privasi:** gambar `assets/moment-*.webp` yang kamu unggah termasuk foto pribadi; bila repository Public, gambar akan bisa diakses publik.

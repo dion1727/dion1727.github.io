@@ -1,50 +1,41 @@
-# Dion / Developer Portfolio + Playable Arcade
+# Dion — Portfolio & Arcade
 
+Portfolio web dengan tema **black glass**, logo kucing, tiga foto, dan game interaktif. Ini versi revisi berdasarkan **V2 asli**, bukan desain ulang yang menghilangkan komponen.
 
-## Preview
+![Hero V4 desktop](docs/previews/hero-v4.png)
 
-![Hero desktop](docs/previews/hero-desktop.png)
+## Yang tersedia
 
-----------------------
+- Halaman About, Moments (tiga foto dan preview), Expertise, Arcade, GitHub Activity, dan Contact.
+- **Commit Quest**, **Pixel Snake**, dan **Commit Breaker** yang dapat dimainkan dengan keyboard ataupun tombol arah.
+- Data kontribusi GitHub bila tersedia; fallback practice dibedakan dari kontribusi asli.
+- Tautan sosial dan galeri personal tetap tersedia.
+- **Repeated scroll reveal**: animasi muncul kembali ketika bagian halaman masuk layar dari atas ataupun bawah.
+- **Background cursor swarm**: cahaya/partikel lembut mengikuti mouse **di belakang konten**; tombol dan teks tidak tertimpa.
+- **Spotlight hover**, **magnetic buttons**, dan **Quick links** berupa folder animasi.
+- **Motion on/off**: tombol animasi dengan fungsi nyata untuk menyalakan atau menghentikan efek gerak.
+- Footer cinematic yang lebih tenang, tanpa slogan berlebihan.
 
-![Gallery desktop](docs/previews/gallery-desktop.png)
+![Galeri tiga foto](docs/previews/gallery-desktop.png)
 
+![Tampilan mobile V4](docs/previews/mobile-v4.png)
 
-## Tampilan
+## Jalankan di VS Code
 
-- Logo kucing di navbar dari gambar yang diberikan.
-- Galeri tiga foto pribadi, dengan spotlight mengikuti mouse dan preview modal klik.
-- Scroll animation di seluruh section (hero, foto, skill, game, GitHub activity, media sosial), parallax ringan, progress bar scroll, serta cursor glow dengan trail halus dan label interaktif yang mengikuti mouse.
-- Tetap mempertahankan **Commit Quest, Pixel Snake, Commit Breaker, GitHub Activity, keahlian, dan media sosial**.
-- Responsive desktop dan mobile; mengikuti preferensi reduced motion.
+Jalankan `JALANKAN_WEBSITE_LOKAL.bat` pada Windows, atau:
 
-## Update Motion V2
-
-- **Scroll reveal** pada judul, kartu, studio game, kontribusi, kontak; gerakan naik/menyamping + blur lembut dengan `IntersectionObserver`.
-- **Cursor glow** selalu mengikuti pointer mouse dengan ring transparan dan trail halus; di tombol yang memakai `data-intent` berubah menjadi label aksi.
-- **Spotlight** pada tiga foto, kartu keahlian, sosial, dan panel game/GitHub.
-- **Parallax ringan** di hero yang bergerak berdasarkan posisi scroll.
-- Animasi tidak mengubah `game.js` atau `radar.js`, agar game dan fetch kontribusi tetap berfungsi.
-- Efek otomatis tidak aktif di layar sentuh atau bila pengaturan *Reduced Motion* dinyalakan.
-
-## Menjalankan
-
-Bisa langsung dibuka lewat `index.html`, tetapi lebih baik dengan server lokal:
-
-```bash
-python -m http.server 8000
+```powershell
+py -m http.server 8000
 ```
 
-Buka `http://localhost:8000/`. Untuk Windows, juga bisa jalankan `JALANKAN_WEBSITE_LOKAL.bat`.
+Lalu buka http://localhost:8000/. Agar tidak kehilangan perubahan, coba di folder baru terlebih dahulu, jangan overwrite repository online sebelum diperiksa.
 
-## Publikasi GitHub Pages
+## Upload ke GitHub Pages
 
-Upload **isi folder ini** ke root repository `KALIAN`, bukan folder pembungkusnya. Pastikan `index.html` berada di root, lalu aktifkan GitHub Pages: `main` / `(root)` atau gunakan workflow Pages sesuai konfigurasi repo.
+Salin **isi folder project** ke root repository `dion1727.github.io` (pastikan `index.html` ada di root). Commit dan Push via GitHub Desktop. Gunakan Ctrl+Shift+R sesudah Pages ter-deploy untuk memaksa refresh aset CSS/JS.
 
-GitHub API dapat membatasi permintaan; status gagal mengambil data harus tetap dianggap tidak tersedia, bukan dibuat-buat.
+## React Bits / shadcn
 
-## Komponen React
+Website aktif tidak membutuhkan React/npm. Kode sumber React Bits yang kamu lampirkan disimpan sebagai referensi di `components/ui/`, sedangkan versi adaptasi yang berfungsi pada website ada di `site.js` dan `styles.css`. Untuk Next.js + TypeScript + Tailwind + shadcn, lihat [REACT_SHADCN_SETUP.md](REACT_SHADCN_SETUP.md).
 
-Proyek saat ini adalah HTML/JS, bukan React. Source Spotlight TSX dan Intent Label tersedia di `components/ui/`; baca [REACT_SHADCN_SETUP.md](REACT_SHADCN_SETUP.md) untuk memasangnya di proyek React + Tailwind + TypeScript melalui CLI shadcn. Website HTML sekarang memakai efek spotlight ekuivalen **yang sudah berjalan** tanpa membutuhkan NPM.
-
-> **Privasi:** tiga foto yang diberikan berada di `assets/moment-*.webp`. Jika repository disetel Public, gambar tersebut akan bisa dilihat oleh siapa pun. Periksa sebelum upload.
+**Privasi:** ketiga foto di `assets/moment-*.webp` akan dapat diakses publik apabila repository diunggah sebagai Public. Tinjau kembali link media sosial sebelum publikasi.

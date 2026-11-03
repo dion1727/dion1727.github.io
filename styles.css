@@ -74,34 +74,83 @@
 @media (hover:none),(pointer:coarse){.intent-cursor{display:none}.moment-card::before,.moment-card::after{display:none}}
 @media (prefers-reduced-motion:reduce){.motion-ready .reveal{opacity:1;translate:none;filter:none}.moment-card,.moment-card>img{transition:none}.cat-orbit{animation:none}}
 
-/* ===== Motion V2: layered cursor, true page-wide scroll animation ===== */
-/* Draw a subtle follow ring instead of covering buttons with a solid pill. */
-.intent-cursor{width:34px;height:34px;min-width:34px;min-height:34px;padding:0!important;opacity:0!important;scale:1!important;display:block;left:0;top:0;border:0!important;background:transparent!important;backdrop-filter:none!important;box-shadow:none!important;transition:opacity .18s ease,width .24s cubic-bezier(.22,.8,.25,1),height .24s ease;will-change:transform;z-index:1500}
-.intent-cursor.is-visible{opacity:1!important}
-.cursor-aura{display:block!important;position:absolute;inset:-2px;border:1px solid rgba(205,223,255,.68);border-radius:50%;background:radial-gradient(circle,rgba(218,227,255,.1),rgba(171,196,244,.025) 65%,transparent 72%);box-shadow:0 0 18px rgba(176,192,240,.25),inset 0 0 13px rgba(175,191,255,.06);transition:border-radius .25s,inset .25s,background .25s,opacity .2s}
-.cursor-core{display:block!important;position:absolute;left:50%;top:50%;height:5px;width:5px;border-radius:100%;background:#f3f7ff;box-shadow:0 0 11px #dce5ff,0 0 30px rgba(190,217,255,.54);transform:translate(-50%,-50%);transition:opacity .18s}
-.cursor-label{display:flex!important;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);align-items:center;justify-content:center;gap:7px;white-space:nowrap;opacity:0;pointer-events:none;padding:0;font:700 11px/1.2 Inter,Arial,sans-serif;color:#0b101c;transition:opacity .18s}
-.cursor-label #intent-cursor-icon,.cursor-label #intent-cursor-text{display:inline!important}
-.intent-cursor.is-intent{width:max-content;min-width:100px;height:39px;border-radius:99px;background:rgba(229,237,252,.9)!important;box-shadow:0 9px 30px #0009,0 0 25px rgba(156,194,255,.2)!important;backdrop-filter:blur(12px)!important}
-.intent-cursor.is-intent .cursor-aura,.intent-cursor.is-intent .cursor-core{opacity:0}
-.intent-cursor.is-intent .cursor-label{opacity:1;position:relative;left:auto;top:auto;transform:none;padding:0 15px;height:100%;width:100%}
-.motion-trail{position:fixed;left:0;top:0;width:6px;height:6px;border-radius:50%;z-index:1499;pointer-events:none;background:rgba(181,198,246,.7);box-shadow:0 0 17px rgba(170,187,237,.55);opacity:0;will-change:transform;transition:opacity .18s}
-.motion-trail.is-visible{opacity:var(--trail-opacity,.13)}
-/* Reduced-motion fallback is always visible and never moves. */
-.motion-ready .reveal{opacity:0;translate:0 42px;filter:blur(7px);transition:opacity .85s cubic-bezier(.22,.81,.3,1),translate .95s cubic-bezier(.2,.7,.19,1),filter .85s ease;transition-delay:var(--reveal-delay,0ms)}
-.motion-ready .reveal[data-reveal=left]{translate:-27px 20px}
-.motion-ready .reveal[data-reveal=right]{translate:27px 20px}
-.motion-ready .reveal.is-visible{opacity:1;translate:0 0;filter:blur(0)}
-/* A small bit of depth during scroll, without changing the game canvas layout. */
-.hero-visual{transform:translate3d(0,calc(var(--depth-shift,0px)*.35),0)}
-.hero-visual .cat-orbit{translate:0 calc(var(--depth-shift,0px)*-.6)}
-/* Make spotlight glass surface work on game cards and contribution panels too. */
-.motion-lit{position:relative;isolation:isolate;--spotlight-x:50%;--spotlight-y:50%}
-.motion-lit::after{content:"";position:absolute;inset:0;border:1px solid transparent;border-radius:inherit;pointer-events:none;background:radial-gradient(300px circle at var(--spotlight-x,50%) var(--spotlight-y,50%),rgba(224,235,255,.55),transparent 58%) border-box;mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);mask-composite:exclude;opacity:0;transition:opacity .25s ease}
-.motion-lit:hover::after,.motion-lit:focus-within::after{opacity:1}
-/* Make heading motion and hover visible but not exaggerated or disruptive. */
-.topbar nav a{position:relative}
-.topbar nav a::after{content:"";position:absolute;bottom:4px;left:14px;right:14px;height:1px;background:linear-gradient(90deg,transparent,#edf3ff,transparent);transform:scaleX(0);transition:transform .32s ease}
-.topbar nav a:hover::after,.topbar nav a:focus-visible::after{transform:scaleX(1)}
-@media (hover:none),(pointer:coarse){.intent-cursor,.motion-trail{display:none!important}}
-@media (prefers-reduced-motion:reduce){.intent-cursor,.motion-trail{display:none!important}.motion-ready .reveal,.motion-ready .reveal[data-reveal]{opacity:1;translate:none;filter:none;transition:none}.hero-visual{transform:none}.hero-visual .cat-orbit{translate:none}.motion-lit::after{display:none}}
+
+/* ============================================================
+   REFINED MOTION V4: an ADDITIVE layer on top of the original V2.
+   Core game, gallery, navigation and analytics styles are untouched.
+   ============================================================ */
+/* The entire cursor visualization lives under the website, not over text. */
+.ambient{z-index:0;isolation:isolate}
+.ambient-swarm{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:.92}
+.page-wrap{z-index:2}
+#scroll-progress{z-index:90}
+
+/* Compact functional BellToggle-inspired Motion switch. */
+.nav-utilities{display:flex;align-items:center;gap:10px;min-width:0;flex-shrink:0}
+.motion-switch{display:flex;align-items:center;justify-content:center;gap:8px;min-height:41px;padding:8px 13px;border-radius:13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.17);color:#c7cbd6;white-space:nowrap;font-size:12px;font-weight:700;transition:background .25s,border-color .25s,box-shadow .25s,color .25s}
+.motion-switch:hover,.motion-switch:focus-visible{border-color:rgba(225,231,244,.58);background:rgba(255,255,255,.08)}
+.motion-switch.enabled{background:rgba(191,207,243,.095);color:#ebeff8;border-color:rgba(203,219,246,.37)}
+.bell-graphic{height:20px;width:20px;display:grid;place-items:center;position:relative;flex-shrink:0}
+.bell-graphic svg{display:block;width:19px;height:19px;transform-origin:50% 15%}
+.bell-wave{position:absolute;width:7px;height:11px;opacity:0;border:1.3px solid rgba(227,238,255,.85);border-bottom:0;border-top:0;top:3px}
+.wave-left{left:-8px;border-right:0;border-radius:13px 0 0 13px}
+.wave-right{right:-8px;border-left:0;border-radius:0 13px 13px 0}
+.bell-ringing .bell-wave{animation:bellWaveV4 .82s ease-out both}
+.bell-ringing .bell-wave.wave-right{animation-delay:.13s}
+@keyframes bellWaveV4{0%{scale:.7;opacity:0}24%{opacity:.95}80%,100%{scale:1.5;opacity:0}}
+
+/* Scroll reveals recur each time an element re-enters the viewport. */
+html.motion-ready .reveal{opacity:0;translate:0 25px;filter:blur(4px);transition:opacity .68s cubic-bezier(.2,.72,.23,1),translate .78s cubic-bezier(.2,.72,.23,1),filter .68s ease;transition-delay:var(--reveal-delay,0ms)}
+html.motion-ready .reveal[data-reveal="right"]{translate:24px 14px}
+html.motion-ready .reveal.is-visible{opacity:1;translate:0 0;filter:none}
+html.motion-off .reveal,html.motion-off .reveal[data-reveal],html:not(.motion-ready) .reveal{opacity:1;translate:none;filter:none;transition:none}
+html.motion-off .ambient-swarm{opacity:0}
+html.motion-off .floating-card,html.motion-off .cat-orbit,html.motion-off .floating-pill{animation:none!important}
+html.motion-off .hero-visual{transform:none!important}
+
+/* Magnetic: modest travel, no clipping or moving UI around. */
+.magnetic-button{transition:translate .25s cubic-bezier(.2,.8,.2,1),border-color .25s,background .25s,box-shadow .25s}
+.magnetic-button:hover{box-shadow:0 5px 22px rgba(195,216,255,.085)}
+
+/* FolderFloat-inspired quick links; compact until opened. */
+.hero-copy{position:relative;z-index:4}
+.float-folder{display:inline-flex;flex-direction:column;align-items:flex-start;position:relative;margin-top:19px;z-index:11}
+.folder-handle{min-height:38px;display:flex;align-items:center;gap:10px;color:#dfe5ef;font-size:12px;font-weight:650;padding:8px 13px;border:1px solid rgba(255,255,255,.18);border-radius:11px;background:rgba(29,31,38,.48);backdrop-filter:blur(10px)}
+.folder-handle:hover,.float-folder.opened .folder-handle{background:rgba(68,72,83,.4);border-color:rgba(225,235,255,.35)}
+.folder-icon{font-size:18px;color:#c6d5eb;line-height:1}
+.folder-chevron{margin-left:8px;color:#a8b4c7;transition:rotate .25s}
+.float-folder.opened .folder-chevron{rotate:180deg}
+.folder-links{position:absolute;left:0;top:calc(100% + 10px);display:grid;gap:8px;padding:11px;min-width:205px;background:linear-gradient(145deg,rgba(36,39,50,.96),rgba(14,16,23,.96));border:1px solid rgba(255,255,255,.2);box-shadow:0 22px 50px #000a;border-radius:15px;z-index:12;backdrop-filter:blur(24px);opacity:0;visibility:hidden;translate:0 -8px;transition:opacity .25s,translate .25s,visibility .25s}
+.float-folder.opened .folder-links{opacity:1;visibility:visible;translate:0 0}
+.folder-links>a{display:flex;justify-content:space-between;align-items:center;gap:12px;border-radius:9px;padding:12px 13px;background:rgba(255,255,255,.05);color:#e4e9f6;font-size:12px;font-weight:600;transform:translateY(-8px) rotate(-1deg);opacity:0;transition:background .2s,transform .36s cubic-bezier(.2,.8,.2,1),opacity .3s}
+.float-folder.opened .folder-links>a{transform:translateY(0) rotate(0);opacity:1}
+.float-folder.opened .folder-links>a:nth-child(2){transition-delay:45ms}
+.float-folder.opened .folder-links>a:nth-child(3){transition-delay:90ms}
+.folder-links>a:hover,.folder-links>a:focus-visible{background:rgba(255,255,255,.12)}
+.folder-links>a span{color:#a8bedb}
+
+/* Keep technical caveats accessible, but collapsed into About. */
+.about-detail{margin:0 10px 26px;padding:0;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.025);border-radius:13px;max-width:800px;color:#bec4d0;font-size:12px;line-height:1.75}
+.about-detail summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none;padding:11px 17px;font-weight:650;color:#d9dfea}
+.about-detail summary::-webkit-details-marker{display:none}
+.about-detail summary span{transition:rotate .24s}
+.about-detail[open] summary span{rotate:180deg}
+.about-detail>div{padding:0 17px 12px}
+.about-detail p{margin:0 0 9px}
+/* Section titles with descriptions removed need room for just the headings. */
+.section-title{align-items:center}
+/* Footer restyle: preserve every original link and contact feature. */
+.cinema-footer{position:relative;isolation:isolate;overflow:hidden;min-height:175px;margin-top:60px;padding:47px 24px;display:flex;align-items:center;justify-content:space-between;gap:22px;flex-wrap:wrap;border:1px solid rgba(255,255,255,.14);border-bottom:0;border-radius:23px 23px 0 0;background:linear-gradient(100deg,rgba(37,40,54,.6),rgba(10,12,18,.89));backdrop-filter:blur(20px)}
+.cinema-footer::before{content:"";position:absolute;inset:-60%;pointer-events:none;z-index:-1;background:radial-gradient(ellipse 32% 30% at 48% 65%,rgba(155,181,235,.13),transparent 80%);animation:footerAmbient 12s ease-in-out infinite alternate}
+.footer-ghost{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);font:900 clamp(92px,16vw,220px)/1 Inter,Arial,sans-serif;letter-spacing:-.09em;color:transparent;-webkit-text-stroke:1px rgba(227,239,255,.08);z-index:-1;pointer-events:none;user-select:none}
+.cinema-footer a{padding:10px 14px;border:1px solid rgba(255,255,255,.24);border-radius:11px;background:rgba(255,255,255,.055);color:#e8ebf1;font-weight:650;transition:background .2s,translate .2s}
+.cinema-footer a:hover{background:rgba(255,255,255,.15);translate:0 -3px}
+@keyframes footerAmbient{from{transform:scale(.92) translateX(-6%)}to{transform:scale(1.09) translateX(6%)}}
+
+@media(max-width:1100px){.topbar{gap:8px;padding:8px 11px}.topbar nav{gap:0}.topbar nav a{padding:10px 8px;font-size:12px}.nav-utilities{gap:5px}.motion-switch{padding:8px 10px}.nav-action{padding:9px 11px}}
+@media(max-width:850px){.motion-label{display:none}.motion-switch{width:42px;padding:8px}.nav-utilities{margin-left:auto}.topbar{height:auto;min-height:68px;flex-wrap:wrap}.topbar nav{order:3;width:100%;justify-content:center;flex-wrap:wrap}.hero{padding-top:38px}.cinema-footer{min-height:145px;padding:26px 20px}}
+@media(max-width:600px){.section-title{display:block}.topbar nav a{padding:8px 9px}.cinema-footer{justify-content:center;text-align:center}.about-detail{margin-left:0;margin-right:0}.float-folder{margin-top:16px}}
+@media (hover:none),(pointer:coarse){.ambient-swarm{display:none}.magnetic-button{translate:0 0!important}}
+@media(prefers-reduced-motion:reduce){.ambient-swarm{display:none}.cinema-footer::before,.bell-wave{animation:none!important}.folder-links>a{transform:none!important;transition:none!important}.motion-switch{transition:none!important}}
+/* At narrow widths animate vertically; lateral reveal can create horizontal scroll. */
+@media(max-width:850px){html.motion-ready .reveal[data-reveal="right"]{translate:0 25px}}
