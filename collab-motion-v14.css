@@ -1,0 +1,105 @@
+/* V14 scroll-editing: start small, grow with scroll, release at 100%.
+   Preserve the V11 non-flickering reveal states and entire site layout. */
+.motion-ready .reveal,
+.motion-ready .reveal[data-reveal=up],
+.motion-ready .reveal[data-reveal=left],
+.motion-ready .reveal[data-reveal=right]{
+  filter:none!important;opacity:0;translate:0 23px;
+  transition:opacity .75s cubic-bezier(.22,1,.36,1),translate .9s cubic-bezier(.16,1,.3,1)!important;
+  transition-delay:0s!important;will-change:auto!important;
+}
+.motion-ready .reveal.is-visible,
+.motion-ready .reveal[data-reveal=up].is-visible,
+.motion-ready .reveal[data-reveal=left].is-visible,
+.motion-ready .reveal[data-reveal=right].is-visible{
+  opacity:1;translate:0 0;
+  transition-delay:var(--reveal-delay,0ms)!important;
+}
+#cursor-sparkles{position:fixed!important;inset:0!important;width:100vw!important;height:100vh!important;z-index:1!important;pointer-events:none!important;mix-blend-mode:normal!important;filter:none!important}
+.page-wrap{position:relative;z-index:2!important}
+.cinema-footer{position:relative;z-index:2}
+.sky-field{z-index:0}
+
+/* The heading is the actual thing being resized; a compositor transform leaves
+   document geometry unchanged, preventing scroll feedback/flicker. */
+.edit-stage-title{
+  display:table;width:fit-content;max-width:100%;
+  position:relative;isolation:isolate;
+  transform:translate3d(0,var(--edit-rise,0px),0) scale(var(--edit-scale,1));
+  transform-origin:left center;
+  transition:transform 64ms linear;
+}
+.edit-stage-layer,.edit-stage-outline{position:absolute;pointer-events:none;inset:0}
+.edit-stage-layer{opacity:var(--edit-show,0);z-index:4;transition:opacity 75ms linear}
+.edit-stage-outline{
+  inset:-11px -15px;border:1.6px solid #2b7cd5;border-radius:4px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.55) inset,0 0 24px rgba(44,129,211,.15);
+}
+.edit-stage-outline::after{
+  content:"";position:absolute;left:-1px;right:-1px;bottom:-12px;height:1px;
+  background:repeating-linear-gradient(90deg,#3c82ce99 0 5px,transparent 5px 11px);
+  opacity:var(--edit-guide-alpha,.7);
+}
+.edit-handle{position:absolute;width:9px;height:9px;background:#fff;border:1.5px solid #2b7cd5;border-radius:2px;box-shadow:0 1px 4px #1c3e6144}
+.edit-handle.tl{left:-5px;top:-5px}.edit-handle.tr{right:-5px;top:-5px}
+.edit-handle.bl{left:-5px;bottom:-5px}.edit-handle.br{right:-5px;bottom:-5px}
+.edit-resize-guide{position:absolute;right:-16px;top:-7px;bottom:-11px;border-right:1px dashed rgba(43,124,213,.5)}
+.edit-stage-badge,.edit-stage-size{
+  position:absolute;z-index:5;pointer-events:none;border-radius:5px;
+  background:#2869aa;color:#fff;font:800 10px/1.3 ui-monospace,Consolas,monospace;
+  letter-spacing:.07em;white-space:nowrap;
+  opacity:var(--edit-show,0);transition:opacity 75ms linear;
+}
+.edit-stage-badge{left:auto;right:102px;top:-33px;padding:5px 7px}
+.edit-stage-size{right:-11px;top:-33px;padding:5px 8px;background:#0e3255}
+.edit-stage-pointer{
+  position:absolute;z-index:6;pointer-events:none;
+  right:-35px;bottom:-28px;display:flex;align-items:center;gap:3px;
+  color:#f36e5a;opacity:var(--edit-show,0);
+  transform:translate3d(var(--edit-cursor-x,0px),var(--edit-cursor-y,0px),0);
+  transition:transform 64ms linear,opacity 75ms linear;
+  filter:drop-shadow(0 4px 6px #294f7350);
+}
+.edit-pointer-tag{background:#f36e5a;color:white;border-radius:4px;padding:5px 7px;font:800 9px/1 ui-monospace,Consolas,monospace}
+@media(max-width:900px){
+  .edit-stage-outline{inset:-6px -8px}
+  .edit-stage-pointer{right:-18px;bottom:-19px}
+  .edit-pointer-tag{display:none}
+  .edit-stage-badge{font-size:8px;top:-24px;right:89px}
+  .edit-stage-size{font-size:8px;top:-24px}
+}
+@media(max-width:640px){
+  .edit-stage-outline::after,.edit-resize-guide,.edit-stage-pointer{display:none!important}
+  .edit-stage-badge{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .edit-stage-title{transform:none!important;transition:none!important}
+  .edit-stage-layer,.edit-stage-badge,.edit-stage-size,.edit-stage-pointer{display:none!important}
+  .motion-ready .reveal,.motion-ready .reveal[data-reveal]{opacity:1!important;translate:0!important;transition:none!important}
+}
+.motion-off .edit-stage-title{transform:none!important;transition:none!important}
+.motion-off .edit-stage-layer,.motion-off .edit-stage-badge,.motion-off .edit-stage-size,.motion-off .edit-stage-pointer{display:none!important}
+
+/* V14: the editor avatar actually DRAGS the corner while the headline expands. */
+.edit-stage-pointer{right:-33px;bottom:-29px;transform:translate3d(var(--edit-cursor-x,-78px),var(--edit-cursor-y,35px),0) rotate(var(--edit-cursor-tilt,-13deg));transition:transform 90ms cubic-bezier(.16,1,.3,1),opacity 110ms linear;will-change:transform}
+.edit-stage-pointer svg{width:23px;height:27px;filter:drop-shadow(0 1px 0 #fff9)}
+.edit-pointer-tag{box-shadow:0 5px 16px #d44c3455}
+.edit-stage-dragtrace{position:absolute;z-index:3;pointer-events:none;right:0;bottom:0;width:var(--edit-drag-length,0px);height:1px;transform:rotate(-23deg);transform-origin:right center;background:repeating-linear-gradient(90deg,rgba(36,110,184,.65) 0 5px,transparent 5px 10px);opacity:calc(var(--edit-show,0)*.75)}
+.edit-stage-outline{box-shadow:0 0 0 1px rgba(255,255,255,.55) inset,0 0 28px rgba(44,129,211,.18)}
+.edit-stage-badge{background:linear-gradient(110deg,#2869aa,#287fc5)}
+.edit-stage-size{background:#123d68}
+/* Clear, transient 100% confirmation before the frame disappears. */
+.edit-stage-complete{position:absolute;z-index:4;right:-9px;bottom:-27px;color:#165b87;font:800 10px/1.2 ui-monospace,Consolas,monospace;white-space:nowrap;pointer-events:none;opacity:var(--edit-complete,0);transform:translateY(calc((1 - var(--edit-complete,0))*9px));transition:opacity .14s,transform .2s}
+/* Decorative polish — no content hiding and no layout changes. */
+@media (hover:hover) and (pointer:fine){
+ .topbar nav a::after{content:"";position:absolute;left:22%;right:22%;bottom:3px;height:2px;transform:scaleX(0);transform-origin:center;background:#f36d60;border-radius:999px;transition:transform .32s cubic-bezier(.22,1,.36,1)}
+ .topbar nav a:hover::after,.topbar nav a:focus-visible::after{transform:scaleX(1)}
+ .social:hover i{transform:translate(3px,-3px) rotate(-12deg)}
+ .moment-card:hover img{filter:saturate(1.08) contrast(1.04)}
+}
+.topbar nav a{position:relative}
+.social i{transition:transform .32s cubic-bezier(.2,.8,.2,1)}
+.moment-card img{transition:filter .55s ease,transform .65s cubic-bezier(.2,.8,.2,1)}
+@media(max-width:720px){.edit-stage-pointer{right:-21px;bottom:-20px}.edit-stage-dragtrace,.edit-stage-complete{display:none!important}}
+@media(prefers-reduced-motion:reduce){.edit-stage-dragtrace,.edit-stage-complete{display:none!important}.social i,.moment-card img{transition:none!important}}
+.motion-off .edit-stage-dragtrace,.motion-off .edit-stage-complete{display:none!important}

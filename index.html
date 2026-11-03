@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" class="v10-cursor">
+<head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="theme-color" content="#98c9ee" />
+<meta name="description" content="Dion Agung Kadang — a glassmorphism developer portfolio with three playable coding arcade games and real GitHub contribution activity." />
+<title>Dion — Build Things That Move</title>
+<link rel="stylesheet" href="styles.css?v=skybound-v7" />
+<link rel="stylesheet" href="skybound.css?v=7" />
+<link rel="stylesheet" href="glass-arcade-v8.css?v=8" />
+<link rel="stylesheet" href="sparkle-project-v9.css?v=9" />
+<link rel="stylesheet" href="v10-polish.css?v=10" />
+<link rel="stylesheet" href="collab-motion-v14.css?v=14" />
+<link rel="icon" type="image/png" href="assets/cat-mark.png" />
+</head>
+<body>
+<div id="scroll-progress" aria-hidden="true"></div>
+<div class="ambient" aria-hidden="true"><canvas id="ambient-swarm"></canvas><div class="cursor-ambient" id="cursor-ambient"></div><div class="glow g-one"></div><div class="glow g-two"></div><div class="glow g-three"></div></div>
+<div class="sky-field" aria-hidden="true">
+  <img class="cloud cloud-one" src="assets/cloud-drift.svg" alt="" />
+  <img class="cloud cloud-two" src="assets/cloud-drift.svg" alt="" />
+  <img class="cloud cloud-three" src="assets/cloud-drift.svg" alt="" />
+  <img class="cloud cloud-four" src="assets/cloud-drift.svg" alt="" />
+  <div class="sky-grain"></div>
+</div>
+<div class="page-wrap" id="top">
+<header class="topbar glass">
+ <a class="brand" href="#top"><span class="brand-mark cat-brand"><img src="assets/cat-mark.png" alt="" width="44" height="44" /></span><span>DION<span class="brand-light"> / BUILDS</span></span></a>
+ <nav aria-label="Main navigation"><a href="#work" data-intent="Explore work" data-intent-icon="view">Work</a><a href="#about" data-intent="Read about Dion" data-intent-icon="view">About</a><a href="#moments" data-intent="View moments" data-intent-icon="view">Photos</a><a href="#expertise" data-intent="Explore skills" data-intent-icon="view">Skills</a><a href="#arcade" data-intent="Play arcade" data-intent-icon="play">Arcade</a><a href="#contributions" data-intent="See activity" data-intent-icon="view">Activity</a><a href="#contact" data-intent="View socials" data-intent-icon="external">Contact</a></nav>
+ <div class="topbar-actions">
+ <button id="motion-switch" class="motion-switch" type="button" aria-pressed="true" aria-label="Toggle motion effects" title="Toggle animation effects">
+  <span class="bell-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9Z"/><path d="M10 21h4"/></svg><i class="bell-wave left"></i><i class="bell-wave right"></i></span>
+  <span class="motion-label">Motion on</span>
+ </button>
+ <a class="nav-action" data-intent="Open GitHub" data-intent-icon="external" href="https://github.com/dion1727" target="_blank" rel="noopener noreferrer">GitHub <span>↗</span></a></div>
+</header>
+<div class="studio-rule" aria-hidden="true"><span>INTERACTIVE PORTFOLIO / 2026</span><span class="rule-ticks"></span><span id="local-clock">LIVE PORTFOLIO</span></div>
+<main>
+<section class="hero sky-hero" id="home">
+  <div class="hero-sky-caption"><span class="availability"><span class="live-indicator"></span> Open for collaboration</span><span class="index-label">PORTFOLIO / LIVE</span></div>
+  <div class="hero-copy">
+    <p class="hero-kicker"><span>DION AGUNG KADANG</span><i></i><span>CREATIVE DEVELOPER</span></p>
+    <h1 class="kinetic-title" aria-label="Ideas built to move"><span class="kinetic-line">IDEAS.</span><span class="kinetic-line kinetic-outline">BUILT TO</span><span class="kinetic-line kinetic-coral">MOVE<span class="period">.</span></span></h1>
+    <p class="hero-description">I build web apps, tools, and little games that feel good to use.</p>
+    <div class="hero-buttons"><a class="btn btn-primary" data-intent="See projects" href="#work">Explore projects <span>↗</span></a><a class="btn btn-outline" data-intent="Play the arcade" href="#arcade">Play something <span>↗</span></a></div>
+  </div>
+  <div class="hero-side-object" aria-hidden="true"><div class="orbit-line"></div><div class="orbit-disc"><img src="assets/cat-mark.png" alt="" /></div><span>CODE / DESIGN / PLAY</span></div>
+  <div class="hero-bottom"><span>SCROLL TO EXPLORE <b>↓</b></span><span>CODE · DESIGN · PLAY</span></div>
+</section>
+
+
+<section class="work-section" id="work" aria-label="Selected projects">
+ <div class="work-header reveal"><div><span class="work-small">01 / SELECTED BUILDS</span><h2>Things I've <em>made.</em></h2></div><div class="work-controls"><span id="work-counter" aria-live="polite">01 / 04</span><button type="button" id="work-prev" aria-label="Previous project">←</button><button type="button" id="work-next" aria-label="Next project">→</button></div></div>
+ <div class="project-rail" id="project-rail" tabindex="0" aria-label="Swipe or use the arrow keys to explore projects">
+  <article class="project-slide project-coffee" data-project="0"><div class="project-paper"><div class="project-preview preview-coffee"><div class="mock-app"><div class="mock-nav"><span>JIMNY / COFFEE</span><span>Dashboard &nbsp; • &nbsp; Menu &nbsp; • &nbsp; Inventory</span></div><div class="mock-main"><div class="mock-eyebrow">COFFEE MANAGEMENT</div><div class="mock-big">Better coffee.<br>Smarter operations.</div><div class="mock-metrics"><span>Orders<br><b>POS</b></span><span>Insights<br><b>Charts</b></span><span>Restock<br><b>Ready</b></span></div></div><div class="mock-lower"><i></i><i></i><i></i><i></i><i></i></div></div></div><div class="project-meta"><div><span class="project-index">01 / WEB SYSTEM</span><h3>JIMNY COFFEE</h3><p>Point of sale, analytics, and restock workflows.</p></div><a class="project-link" href="https://github.com/Satar2007/Proyek-Informatika" target="_blank" rel="noopener noreferrer" aria-label="Open JIMNY COFFEE on GitHub">↗</a></div></div></article>
+  <article class="project-slide project-crypto" data-project="1"><div class="project-paper"><div class="project-preview preview-crypto"><img class="project-real-shot" src="assets/project-kriptofull-real.png" alt="Screenshot of Kriptofull cryptography application" loading="lazy" decoding="async" /><div class="mock-app"><div class="mock-nav"><span>KRIPTOFULL</span><span>DES &nbsp; 3DES &nbsp; AES</span></div><div class="crypto-work"><div><small>CRYPTOSYSTEM / LAB</small><strong>Protect the<br>message.</strong><p>ENCRYPT &nbsp; / &nbsp; DECRYPT</p></div><div class="crypto-pad"><i>INPUT DATA</i><span>•••••••••••••••••••</span><i>ENCRYPTION STATUS</i><b>SECURED ✓</b></div></div></div></div><div class="project-meta"><div><span class="project-index">02 / SECURITY TOOL</span><h3>Kriptofull</h3><p>Encryption workspace with Feistel analysis.</p></div><a class="project-link" href="https://github.com/dion1727/ForKrip" target="_blank" rel="noopener noreferrer" aria-label="Open Kriptofull on GitHub">↗</a></div></div></article>
+  <article class="project-slide project-transkriva" data-project="2"><div class="project-paper"><div class="project-preview preview-audio"><img class="project-real-shot" src="assets/project-transkriva-overview.png" alt="Screenshot of the Transkriva audio transcription web app" loading="lazy" decoding="async" /><div class="mock-app"><div class="mock-nav"><span>TRANS<span style="color:#ff9a4e">KRIVA</span></span><span>STUDIO &nbsp; LIBRARY &nbsp; TOOLS</span></div><div class="audio-work"><div><small>TRANSCRIPTION STUDIO</small><strong>Hear it.<br>See it.</strong><div class="audio-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="audio-result"><small>TRANSCRIPT</small><span></span><span></span><span></span><em>TXT · SRT · VTT</em></div></div></div></div><div class="project-meta"><div><span class="project-index">03 / AUDIO TOOL</span><h3>Transkriva</h3><p>Local transcription using Whisper with CPU/GPU.</p></div><a class="project-link" href="https://github.com/dion1727/Transkriva" target="_blank" rel="noopener noreferrer" aria-label="Open Transkriva on GitHub">↗</a></div></div></article>
+  <article class="project-slide project-arcade" data-project="3"><div class="project-paper"><div class="project-preview preview-arcade"><img class="project-real-shot" src="assets/project-arcade-live.png" alt="Screenshot of playable Browser Arcade" loading="lazy" decoding="async" /><div class="mock-app"><div class="mock-nav"><span>DION / ARCADE</span><span>COMMIT QUEST &nbsp; PIXEL SNAKE</span></div><div class="arcade-work"><span class="arcade-pixel">▥</span><strong>PLAY.<br>BUILD.<br>REPEAT.</strong><div class="pixel-field"><span>●</span><span>▣</span><span>✦</span><span>▥</span><span>●</span></div></div></div></div><div class="project-meta"><div><span class="project-index">04 / INTERACTIVE</span><h3>Browser Arcade</h3><p>Three playable games with activity-inspired mechanics.</p></div><a class="project-link" href="#arcade" aria-label="Jump to playable arcade">↗</a></div></div></article>
+ </div>
+ <div class="rail-footer"><span><span class="drag-indicator">↔</span> DRAG OR USE ARROWS</span><div class="project-dots" id="project-dots" role="group" aria-label="Choose a project"><button class="active" aria-label="Project 1" aria-pressed="true"></button><button aria-label="Project 2" aria-pressed="false"></button><button aria-label="Project 3" aria-pressed="false"></button><button aria-label="Project 4" aria-pressed="false"></button></div></div>
+</section>
+<section class="about-panel reveal" id="about"><div class="about-badge">A LITTLE ABOUT ME</div><div class="about-grid"><div><h2>Developer by<br><em>curiosity.</em></h2><p>I'm Dion, an Informatics student. I like turning ideas into working applications, mixing practical engineering with playful interfaces.</p><a href="#expertise" class="about-link">WHAT I WORK WITH <span>↗</span></a></div><div class="orbit-playground" aria-label="Interactive ball playground">
+  <div class="orbit-head"><span class="orbit-eyebrow">TAKE A BREAK / INTERACTIVE</span><span class="orbit-live"><i></i> LIVE PLAYGROUND</span></div>
+  <div class="orbit-stage"><canvas id="orbit-canvas" width="820" height="490" aria-label="Drag the bouncing balls, or click a free space to make more balls. Supports touch."></canvas><div class="orbit-hint" aria-hidden="true">drag a ball · tap to create</div></div>
+  <div class="orbit-toolbar"><span><strong>Play with gravity.</strong><small>No setup, just motion.</small></span><div class="orbit-actions"><button type="button" id="orbit-gravity" aria-pressed="false">Gravity off</button><button type="button" id="orbit-add">+ Ball</button><button type="button" id="orbit-reset">Reset</button></div></div>
+</div></div></section>
+
+<section class="moments-section" id="moments" aria-label="Personal photo gallery">
+  <div class="section-title reveal"><div><div class="kicker">BEYOND THE SCREEN</div><h2>Off the <em>clock.</em></h2></div>
+    <p>Three photos.</p></div>
+  <div class="moments-grid">
+    <button class="moment-card spotlight-surface reveal" data-intent-icon="view" type="button" data-photo="1" data-intent="View photo 01" aria-label="Open personal photo 1">
+      <img src="assets/moment-1.webp" alt="Personal portrait taken indoors" loading="lazy" decoding="async" />
+      <span class="moment-glass"><span class="moment-index">FRAME / 01</span><b>In the moment</b><span class="moment-open">↗</span></span>
+    </button>
+    <button class="moment-card spotlight-surface reveal" data-intent-icon="view" type="button" data-photo="2" data-intent="View photo 02" aria-label="Open personal photo 2">
+      <img src="assets/moment-2.webp" alt="Personal outdoor portrait" loading="lazy" decoding="async" />
+      <span class="moment-glass"><span class="moment-index">FRAME / 02</span><b>A little pause</b><span class="moment-open">↗</span></span>
+    </button>
+    <button class="moment-card spotlight-surface reveal" data-intent-icon="view" type="button" data-photo="3" data-intent="View photo 03" aria-label="Open personal photo 3">
+      <img src="assets/moment-3.webp" alt="Group working with laptops in a classroom" loading="lazy" decoding="async" />
+      <span class="moment-glass"><span class="moment-index">FRAME / 03</span><b>Work in progress</b><span class="moment-open">↗</span></span>
+    </button>
+  </div>
+  <p class="gallery-note reveal"><span aria-hidden="true">✳</span> Tap a photo to view it.</p>
+</section>
+<dialog id="photo-dialog" class="photo-dialog" aria-label="Expanded personal photograph">
+  <button type="button" class="photo-close" id="photo-close" aria-label="Close photo">✕ <span>Close</span></button>
+  <div class="photo-dialog-shell"><img id="photo-expanded" alt="Expanded personal photograph" /><div class="photo-dialog-footer"><span id="photo-caption">Photo</span><span>ESC to close</span></div></div>
+</dialog>
+
+<section class="expertise" id="expertise"><div class="section-title"><div><div class="kicker">MY TOOLBOX</div><h2>Skills & <em>expertise.</em></h2></div><p></p></div>
+ <div class="skill-grid">
+ <article class="skill-card glass spotlight-surface reveal" data-intent="Explore skill" data-intent-icon="view"><div class="skill-top"><span class="skill-icon">⌘</span><span class="skill-number">WEB / 01</span></div><h3>Frontend development</h3><p>Building responsive, usable websites with careful layouts and interactive details.</p><div class="tags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Responsive UI</span></div></article>
+ <article class="skill-card glass spotlight-surface reveal" data-intent="Explore skill" data-intent-icon="view"><div class="skill-top"><span class="skill-icon">{ }</span><span class="skill-number">LOGIC / 02</span></div><h3>Backend & APIs</h3><p>Working with application logic, server-side programming, routes and integrations.</p><div class="tags"><span>Python</span><span>PHP</span><span>Laravel</span><span>REST APIs</span></div></article>
+ <article class="skill-card glass spotlight-surface reveal" data-intent="Explore skill" data-intent-icon="view"><div class="skill-top"><span class="skill-icon">◈</span><span class="skill-number">DATA / 03</span></div><h3>Databases & data</h3><p>Structuring relational data and analyzing datasets to support real applications.</p><div class="tags"><span>MySQL</span><span>SQL</span><span>Pandas</span><span>Data analysis</span></div></article>
+ <article class="skill-card glass spotlight-surface reveal" data-intent="Explore skill" data-intent-icon="view"><div class="skill-top"><span class="skill-icon">⌁</span><span class="skill-number">WORKFLOW / 04</span></div><h3>Development tools</h3><p>Collaborative workflows, version control, debugging and developer environments.</p><div class="tags"><span>Git</span><span>GitHub</span><span>VS Code</span><span>CLI</span></div></article>
+ </div>
+ <div class="explore-line glass spotlight-surface reveal"><div><span class="tiny-orbit">✧</span><strong>Next up</strong><p>Machine learning · security · software design.</p></div><a href="https://github.com/dion1727?tab=repositories" target="_blank" rel="noopener noreferrer">Explore repositories ↗</a></div>
+</section>
+<section id="arcade" class="arcade-section"><div class="section-title"><div><div class="kicker">BROWSER ARCADE</div><h2>Take a <em>coding break.</em></h2></div><p>Three games, one playground.</p></div>
+ <div class="game-selector" role="group" aria-label="Choose game">
+ <button id="mode-quest" data-intent="Select game" data-intent-icon="play" class="game-option active" aria-pressed="true" type="button"><span class="option-icon">◕</span><span><b>Commit Quest</b><small>Collect GitHub tiles</small></span></button>
+ <button id="mode-snake" data-intent="Select game" data-intent-icon="play" class="game-option" aria-pressed="false" type="button"><span class="option-icon">▦</span><span><b>Pixel Snake</b><small>Classic arcade snake</small></span></button>
+ <button id="mode-breaker" data-intent="Select game" data-intent-icon="play" class="game-option" aria-pressed="false" type="button"><span class="option-icon">◫</span><span><b>Commit Breaker</b><small>Break the board</small></span></button>
+ </div>
+ <div class="play-layout"><div class="game-main glass motion-lit" data-mode="quest"><div class="game-topline"><div><span class="game-dot"></span> ARCADE / <span id="game-top-title">COMMIT QUEST</span></div><span class="game-top-badge">3 PLAYABLE GAMES</span></div>
+ <div class="hud"><div><small>SCORE</small><strong id="score">0000</strong></div><div><small>BEST</small><strong id="best">0000</strong></div><div id="third-label"><small>LIVES</small><strong id="third">3</strong></div><div><small>STATUS</small><strong id="status">READY</strong></div></div>
+ <div class="canvas-wrap" data-mode="quest"><canvas id="board" width="690" height="450" aria-label="Playable game area. Controls: arrow keys or WASD." tabindex="0"></canvas><div id="overlay" class="overlay"><div class="overlay-content"><div class="kicker">READY, PLAYER ONE?</div><h3 id="overlay-title">Commit Quest</h3><p id="overlay-message">Collect activity, avoid bugs and aim for a new high score.</p><button id="overlay-start" class="btn btn-primary" type="button">Start game ↗</button></div></div></div>
+ <div class="game-actions"><div class="buttons"><button id="start" type="button" class="btn btn-primary">▶ Start / Restart</button><button id="pause" type="button" class="btn btn-outline" disabled>Ⅱ Pause</button><button id="sound" type="button" class="btn btn-outline" aria-pressed="false">♪ Sound off</button></div><div class="game-speed"><label for="game-speed">SPEED</label><select id="game-speed"><option value="0.8">Relaxed</option><option value="1" selected>Normal</option><option value="1.35">Fast</option></select></div></div>
+ <div class="touch" aria-label="Touch and click movement controls"><button type="button" class="ctrl up" data-dir="up" aria-label="Up">↑</button><button type="button" class="ctrl left" data-dir="left" aria-label="Left">←</button><button type="button" class="ctrl down" data-dir="down" aria-label="Down">↓</button><button type="button" class="ctrl right" data-dir="right" aria-label="Right">→</button></div>
+ </div>
+ <aside class="game-info glass motion-lit"><div class="info-flag">GAME GUIDE <span class="guide-symbol">✳</span></div><h3 id="how-title">Collect your commits.</h3><p id="how-text">Collect commit tiles. Avoid bugs.</p>
+ <div class="data-state"><span>GITHUB DATA</span><strong id="data-status">Connecting…</strong><small id="data-updated">Waiting for data</small><button id="refresh-data" type="button">↻ Refresh contribution data</button></div>
+ <div class="mini-stat"><div><small>PUBLIC REPOS</small><strong id="public-repos">—</strong></div><div><small>FOLLOWERS</small><strong id="followers">—</strong></div></div>
+ <div class="side-bottom"><small>GAMEBOARD STATUS</small><h4 id="stats-title">Awaiting activity data</h4><a href="https://github.com/dion1727?tab=overview" target="_blank" rel="noopener noreferrer">View actual GitHub profile ↗</a></div>
+ <div class="report"><small>ACTIVITY LOG</small><p id="recent-event">Checking GitHub activity...</p></div></aside></div>
+ <p class="game-footnote">Contribution data syncs when available. Offline sessions use clearly labeled practice tiles.</p>
+</section>
+<span id="radar" aria-hidden="true"></span><span id="activity" aria-hidden="true"></span><section class="contributions" id="contributions"><div class="section-title"><div><div class="kicker">GITHUB / LIVE DATA</div><h2>Contribution <em>map.</em></h2></div><p>From my GitHub.</p></div>
+<div class="contribution-layout"><div class="heatmap-box glass motion-lit">
+ <div class="section-toolbar"><b>Contribution calendar <span class="calendar-period">/ last 52 weeks</span></b><span id="radar-source" aria-live="polite">FETCHING</span></div>
+ <div id="calendar-notice" class="calendar-notice" role="status">Memuat data kontribusi publik…</div>
+ <div class="calendar-scroll" tabindex="0" aria-label="Contribution calendar, scroll sideways to view all weeks">
+   <div class="calendar-shell">
+     <div class="calendar-label-col"><span class="calendar-month-spacer"></span><div class="calendar-days"><span>Sunday</span><span>Monday</span><span>Tuesday</span><span>Wednesday</span><span>Thursday</span><span>Friday</span><span>Saturday</span></div></div>
+     <div class="calendar-main"><div id="calendar-months" class="calendar-months" aria-hidden="true"></div><div id="heatmap" class="heatmap v10-heatmap" role="group" aria-label="Public contribution dates"></div></div>
+   </div>
+ </div>
+ <div class="calendar-legend"><span>Older</span><span class="legend-scale"><span>Less</span><i class="l0"></i><i class="l1"></i><i class="l2"></i><i class="l3"></i><i class="l4"></i><span>More</span></span><span>Newer</span></div>
+ <div class="day-details" id="day-details" aria-live="polite"><div><strong id="selected-day">Choose a date</strong><span id="selected-count">Click any square to inspect its day.</span></div><div id="selected-activity" class="day-event-list">Latest public activity will appear here when available.</div><a id="selected-github" href="https://github.com/dion1727?tab=overview" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div>
+</div><div class="counts-box glass motion-lit"><div><small id="contribution-count-label">CONTRIBUTIONS</small><strong id="contribution-total">—</strong></div><div><small>ACTIVE DAYS</small><strong id="active-days">—</strong></div><div><small>LAST REFRESH</small><strong id="sync-age">—</strong></div><button type="button" id="refresh-radar">↻ Refresh activity</button></div></div>
+<div class="activity-feed glass motion-lit"><div class="section-toolbar"><b>Recent public activity</b><a href="https://github.com/dion1727?tab=overview" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a></div><div id="activity-feed" class="feed-list" aria-live="polite">Loading public GitHub activity...</div></div>
+</section>
+<section class="contact" id="contact"><div class="section-title"><div><div class="kicker">LET'S CONNECT</div><h2>Beyond the <em>code.</em></h2></div><p>Find me online.</p></div><div class="social-grid">
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="https://github.com/dion1727" target="_blank" rel="noopener noreferrer"><span>GH</span><b>GitHub</b><i>↗</i></a>
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="https://www.linkedin.com/in/Dion%20Agung%20Kadang/" target="_blank" rel="noopener noreferrer"><span>IN</span><b>LinkedIn</b><i>↗</i></a>
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="https://www.kaggle.com/dionagungkadang" target="_blank" rel="noopener noreferrer"><span>KG</span><b>Kaggle</b><i>↗</i></a>
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="https://www.instagram.com/dionmrfs_d/" target="_blank" rel="noopener noreferrer"><span>IG</span><b>Instagram</b><i>↗</i></a>
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="https://www.youtube.com/@daizodn9742" target="_blank" rel="noopener noreferrer"><span>YT</span><b>YouTube</b><i>↗</i></a>
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="https://discord.gg/diondn_" target="_blank" rel="noopener noreferrer"><span>DC</span><b>Discord</b><i>↗</i></a>
+ <a class="glass social spotlight-surface reveal" data-intent="Open profile" data-intent-icon="external" href="mailto:dion1727agung@gmail.com"><span>@</span><b>Email</b><i>↗</i></a>
+ </div></section>
+</main>
+<footer class="cinema-footer">
+ <div class="footer-aurora" aria-hidden="true"></div>
+ <div class="footer-content">
+ <span>© <span id="year">2026</span> Dion Agung Kadang</span>
+ <div class="footer-tools">
+  <div class="float-folder" id="float-folder">
+   <button id="folder-handle" class="folder-handle" type="button" aria-expanded="false" aria-controls="folder-links"><span aria-hidden="true">▤</span> Quick links <span class="folder-chevron" aria-hidden="true">⌃</span></button>
+   <div id="folder-links" class="folder-links" inert>
+    <a href="#expertise">Skills</a><a href="#moments">Photos</a><a href="#arcade">Arcade</a><a href="#contributions">Activity</a>
+   </div>
+  </div>
+  <a class="footer-up" href="#top">Back to top ↑</a>
+ </div>
+ </div>
+</footer>
+</div><canvas id="cursor-sparkles" aria-hidden="true"></canvas><script src="game.js" defer></script><script src="radar.js" defer></script><script src="site.js?v=skybound-v7" defer></script><script src="skybound.js?v=7" defer></script><script src="orbit-playground.js?v=10" defer></script><script src="cursor-v11.js?v=11" defer></script>
+<script src="collab-scroll-v14.js?v=14" defer></script></body></html>

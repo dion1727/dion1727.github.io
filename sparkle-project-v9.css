@@ -1,0 +1,33 @@
+/* Skybound V9 — targeted enhancement. V8 layout and all game files remain intact. */
+/* Real Transkriva screenshot replaces the duplicated personal photo only in About. */
+.about-project-preview{
+  position:relative;display:block;min-width:0;min-height:clamp(260px,27vw,375px);
+  border:8px solid rgba(255,255,255,.78);border-radius:28px;
+  overflow:hidden;isolation:isolate;color:white;text-decoration:none;
+  background:linear-gradient(145deg,#23446b,#547c9c);
+  transform:rotate(1.5deg);
+  box-shadow:0 25px 60px rgba(36,77,112,.23);
+  transition:transform .5s cubic-bezier(.2,.75,.25,1),box-shadow .4s;
+}
+.about-project-preview:hover,.about-project-preview:focus-visible{
+  transform:rotate(0deg) translateY(-6px);
+  box-shadow:0 36px 70px rgba(31,72,105,.29);
+}
+.about-project-screen{display:block;position:absolute;inset:0;overflow:hidden}
+.about-project-image{display:block;width:100%;height:100%;object-fit:cover;object-position:35% 23%;transform:scale(1.04);filter:saturate(.98) contrast(1.04);transition:transform .65s ease,filter .5s ease}
+.about-project-preview:hover .about-project-image{transform:scale(1.095);filter:saturate(1.06) contrast(1.01)}
+.about-project-preview::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(180deg,transparent 8%,rgba(13,31,51,.22) 43%,rgba(13,32,51,.94) 100%)}
+.about-project-info{position:absolute;z-index:3;bottom:21px;left:26px;right:24px;display:flex;flex-direction:column;gap:4px;text-shadow:0 1px 12px rgba(0,0,0,.25)}
+.about-project-kicker{font:750 10px/1.5 ui-monospace,Consolas,monospace;letter-spacing:.12em;color:#ffc4af}
+.about-project-info strong{font:850 clamp(29px,3.5vw,48px)/1.08 Inter,Arial,sans-serif;letter-spacing:-.045em;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.about-project-info small{font-size:11px;color:#d9eafa;letter-spacing:.01em}
+.project-link-arrow{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.6);background:rgba(255,255,255,.19);font-size:24px;font-weight:500;flex-shrink:0;transition:background .25s,transform .25s}
+.about-project-preview:hover .project-link-arrow{background:#ee6d57;transform:rotate(45deg)}
+.about-project-float{position:absolute;z-index:2;left:18px;top:17px;display:flex;align-items:center;gap:9px;border:1px solid rgba(255,255,255,.5);background:rgba(15,44,73,.56);backdrop-filter:blur(12px);color:white;border-radius:999px;padding:7px 12px;font:800 9px ui-monospace,monospace;letter-spacing:.1em}
+.about-wave-icon{color:#8bd6f1;font:800 15px/1 monospace;letter-spacing:-.16em}
+/* Small, crisp sparkle trail instead of the previous large orbit of particles. */
+#ambient-swarm{position:absolute;inset:0;z-index:0;pointer-events:none}
+.cursor-ambient{background:radial-gradient(150px circle at var(--cx,-300px) var(--cy,-300px),rgba(255,255,255,.12),rgba(67,121,176,.035) 48%,transparent 76%)!important;pointer-events:none!important}
+.motion-off #ambient-swarm{opacity:0!important}
+@media(max-width:670px){.about-project-preview{min-height:285px;transform:none;border-radius:23px}.about-project-info{left:17px;right:17px;bottom:18px}.about-project-float{left:12px;top:13px}.about-project-info strong{font-size:33px}}
+@media(prefers-reduced-motion:reduce){.about-project-preview,.about-project-image,.project-link-arrow{transition:none!important}.about-project-preview:hover{transform:none!important}}
